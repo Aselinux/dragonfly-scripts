@@ -58,7 +58,8 @@ command_table = [
     'set proxy server to <proxy>',
     'disable proxy server',
     'enable proxy server',
-    'force natlink to reload all grammars'
+    'force natlink to reload all grammars',
+    'reload grammars' # simplified utterance of the above
     ]
 command_table = aenea.configuration.make_grammar_commands(
     'aenea',
@@ -132,7 +133,10 @@ def reload_code():
 # also unloads all modules and packages in the macro directory so that they will
 # be reloaded the next time that they are imported.  It even reloads Aenea!
 class ReloadGrammarsRule(dragonfly.MappingRule):
-    mapping = {command_table['force natlink to reload all grammars']: dragonfly.Function(reload_code)}
+    mapping = {
+            command_table['force natlink to reload all grammars']: dragonfly.Function(reload_code), 
+            command_table['reload grammars']: dragonfly.Function(reload_code)
+            }
 
 server_list = dragonfly.DictList('aenea servers')
 server_list_watcher = aenea.configuration.ConfigWatcher(
