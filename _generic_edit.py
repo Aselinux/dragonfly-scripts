@@ -89,27 +89,65 @@ def reload_natlink():
 
 
 # For repeating of characters.
+#specialCharMap = {
+#    "(bar|vertical bar|pipe)": "|",
+#    "(dash|minus|hyphen)": "-",
+#    "(dot|period)": ".",
+#    "comma": ",",
+#    "backslash": "\\",
+#    "underscore": "_",
+#    "(star|asterisk)": "*",
+#    "colon": ":",
+#    "(semicolon|semi-colon)": ";",
+#    "at": "@",
+#    "[double] quote": '"',
+#    "single quote": "'",
+#    "hash": "#",
+#    "dollar": "$",
+#    "percent": "%",
+#    "and": "&",
+#    "slash": "/",
+#    "equal": "=",
+#    "plus": "+",
+#    "space": " "
+#}
 specialCharMap = {
-    "(bar|vertical bar|pipe)": "|",
+    "(bar|vertical bar)": "|",
+    "(pipe)": " | ",
     "(dash|minus|hyphen)": "-",
-    "(dot|period)": ".",
-    "comma": ",",
+    "(dot|period|point|dit|doot)": ".",
+    "(comma|commy|comy)": ",",	# comma not working as a command, so I added alternatives
     "backslash": "\\",
-    "underscore": "_",
+    "([forward]slash|lash|Flash)": "/",	# slash and "forward slash" is not working as a command, so removed space and added alternatives
+    "(underscore)": "_",
     "(star|asterisk)": "*",
-    "colon": ":",
-    "(semicolon|semi-colon)": ";",
-    "at": "@",
+    "(colon|colly|coal)": ":",
+    "(semicolon|semi)": ";",
+    "at (sign|symbol)|atte": "@", # "at sign"  doesn't work, "at" on its own not a good idea
     "[double] quote": '"',
-    "single quote": "'",
+    "(single [quote]|sing)": "'",
     "hash": "#",
-    "dollar": "$",
-    "percent": "%",
-    "and": "&",
-    "slash": "/",
-    "equal": "=",
-    "plus": "+",
-    "space": " "
+    "dollar|dolly": "$", # i just liked dolly as well
+    "percent|centy": "%", # just going with the flow
+    "and (sign|symbol)|ampersand|sandy": "&",  # ampersand doesn't seem to work, and symbol or sign seems heavy to recognize, sandy is going with the flow
+    "(equal|equals|eeks)": "=",
+    "plus [sign]": "+",
+    "space": " ",	
+    # adding missing characters
+    "(less than|lang|langle)": "<",
+    "(greater than|rang|rangle)": ">",
+    "(lape|len)": '(',
+    "(rape|ren)": ")",
+    "lace": "{",
+    "race": "}",
+    "lack": "[",
+    "rack": "]",
+    # more missing symbols
+    "(question [mark]|quest)": "?",
+    "(back tick)": "`",	# remove tick confused with teek and bing not used
+    "(caret|carrot)": "^",
+    "tilde": "~",
+    "(exclamation [mark]|bang|clammy)": "!",
 }
 
 # Modifiers for the press-command.
