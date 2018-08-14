@@ -50,6 +50,7 @@ from lib.format import (
     camel_case_count,
     pascal_case_count,
     snake_case_count,
+    title_case_count,
     squash_count,
     expand_count,
     uppercase_count,
@@ -116,9 +117,9 @@ specialCharMap = {
     "(pipe)": " | ",
     "(dash|minus|hyphen)": "-",
     "(dot|period|point|dit|doot)": ".",
-    "(comma|commy|comy)": ",",	# comma not working as a command, so I added alternatives
+    "(comma|commy|comy)": ",",  # comma not working as a command, so I added alternatives
     "backslash": "\\",
-    "([forward]slash|lash|Flash)": "/",	# slash and "forward slash" is not working as a command, so removed space and added alternatives
+    "([forward]slash|lash|Flash)": "/", # slash and "forward slash" is not working as a command, so removed space and added alternatives
     "(underscore)": "_",
     "(star|asterisk)": "*",
     "(colon|colly|coal)": ":",
@@ -132,7 +133,7 @@ specialCharMap = {
     "and (sign|symbol)|ampersand|sandy": "&",  # ampersand doesn't seem to work, and symbol or sign seems heavy to recognize, sandy is going with the flow
     "(equal|equals|eeks)": "=",
     "plus [sign]": "+",
-    "space": " ",	
+    "space": " ",
     # adding missing characters
     "(less than|lang|langle)": "<",
     "(greater than|rang|rangle)": ">",
@@ -144,7 +145,7 @@ specialCharMap = {
     "rack": "]",
     # more missing symbols
     "(question [mark]|quest)": "?",
-    "(back tick)": "`",	# remove tick confused with teek and bing not used
+    "(back tick)": "`", # remove tick confused with teek and bing not used
     "(caret|carrot)": "^",
     "tilde": "~",
     "(exclamation [mark]|bang|clammy)": "!",
@@ -250,6 +251,7 @@ formatMap = {
     "camel case": ft.camelCase,
     "pascal case": ft.pascalCase,
     "snake case": ft.snakeCase,
+    "title case": ft.titleCase,
     "uppercase": ft.upperCase,
     "lowercase": ft.lowerCase,
     "squash": ft.squash,
@@ -486,6 +488,7 @@ grammarCfg.cmd.map = Item(
         "camel case <n> [words]": Function(camel_case_count),
         "pascal case <n> [words]": Function(pascal_case_count),
         "snake case <n> [words]": Function(snake_case_count),
+        "title case <n> [words]": Function(title_case_count),
         "squash <n> [words]": Function(squash_count),
         "expand <n> [words]": Function(expand_count),
         "uppercase <n> [words]": Function(uppercase_count),

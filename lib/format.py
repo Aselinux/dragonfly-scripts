@@ -46,6 +46,7 @@ letterMap = {
 class FormatTypes:
     camelCase = 1
     pascalCase = 2
+    titleCase = 10
     snakeCase = 3
     squash = 4
     upperCase = 5
@@ -102,6 +103,15 @@ def format_pascal_case(text):
         newText = '%s%s' % (newText, word.capitalize())
     return newText
 
+def format_title_case(text):
+    newText = ""
+    words = strip_dragon_info(text)
+    for word in words:
+        if newText == "":
+            newText = word.capitalize()
+        else:
+            newText = '%s %s' % (newText, word.capitalize())
+    return newText
 
 def format_snake_case(text):
     newText = ""
@@ -175,6 +185,7 @@ def format_spoken_form(text):
 FORMAT_TYPES_MAP = {
     FormatTypes.camelCase: format_camel_case,
     FormatTypes.pascalCase: format_pascal_case,
+    FormatTypes.titleCase: format_title_case,
     FormatTypes.snakeCase: format_snake_case,
     FormatTypes.squash: format_squash,
     FormatTypes.upperCase: format_upper_case,
@@ -263,6 +274,15 @@ def pascal_case_text(text):
     newText = format_pascal_case(text)
     Text("%(text)s").execute({"text": newText})
 
+def title_case_text(text):
+    """Formats dictated text to title case.
+
+    Example:
+    "'title case my new variable'" => "My New Variable".
+
+    """
+    newText = format_title_case(text)
+    Text("%(text)s").execute({"text": newText})
 
 def pascal_case_count(n):
     """Formats n words to the left of the cursor to pascal case.
@@ -287,6 +307,28 @@ def pascal_case_count(n):
         Key('c-v').execute()  # Restore cut out text.
     _set_clipboard_text(saveText)
 
+def title_case_count(n):
+    """Formats n words to the left of the cursor to title case.
+    Note that word count differs between editors and programming languages.
+    The examples are all from Eclipse/Python.
+
+    Example:
+    "'my new variable' *pause* 'title case 3'" => "My New Variable".
+
+    """
+    saveText = _get_clipboard_text()
+    cutText = _select_and_cut_text(n)
+    if cutText:
+        endSpace = cutText.endswith(' ')
+        text = _cleanup_text(cutText)
+        newText = text.title()
+        if endSpace:
+            newText = newText + ' '
+        newText = newText.replace("%", "%%")  # Escape any format chars.
+        Text(newText).execute()
+    else:  # Failed to get text from clipboard.
+        Key('c-v').execute()  # Restore cut out text.
+    _set_clipboard_text(saveText)
 
 def snake_case_text(text):
     """Formats dictated text to snake case.
