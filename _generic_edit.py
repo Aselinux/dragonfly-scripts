@@ -526,9 +526,9 @@ if config.get("aenea.enabled") == True:
     })
 else: # this "else" section is basically the full VOICE KEYBOARD, when running on standalone windows machine not using aenea client/server proxy features, win7-64 dragon15.3(official install of 15 then updated with sp 15.3) python2.7.14-32(installed with exe) pywin32 natlink-victor(installed with exe) dragonfly-0.6.6b1-py2.7.egg(installed with setup.py or pip) aenea-1.0(installed with setup.py), all key combinations working (like ctrl alt tango, super 1, super d, ctrl left, ctrl shift right, ctrl shift home, ctrl shift left 10 times, etc)
     grammarCfg.cmd.map.update({
-		"[press] <pressKey>": Key("%(pressKey)s"),  # @IgnorePep8 # enabling pressKey = pressKeyMap = (letterMap), (numberMap), (controlKeyMap), (functionKeyMap)
-		"[press] <char>":     Text("%(char)s"),  # @IgnorePep8 # enabling char/specialCharMap
-    })	
+        "[press] <pressKey>": Key("%(pressKey)s"),  # @IgnorePep8 # enabling pressKey = pressKeyMap = (letterMap), (numberMap), (controlKeyMap), (functionKeyMap)
+        "[press] <char>":     Text("%(char)s"),  # @IgnorePep8 # enabling char/specialCharMap
+    })
 
 
 class KeystrokeRule(MappingRule):
