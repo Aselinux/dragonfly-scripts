@@ -80,7 +80,9 @@ if config.get("aenea.enabled", False) == True:
     grammar = Grammar("Terminator general", context=context)
     grammar.add_rule(rules)
     grammar.load()
-
+else: # this else will prevent error of grammar not defined when calling the unload function below if we are running only on a windows machine and calling reload grammars from _aenea.py
+	grammar = None
+	
 def unload():
     global grammar
     if grammar:
