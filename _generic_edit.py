@@ -528,6 +528,8 @@ else: # this "else" section is basically the full VOICE KEYBOARD, when running o
     grammarCfg.cmd.map.update({
         "[press] <pressKey>": Key("%(pressKey)s"),  # @IgnorePep8 # enabling pressKey = pressKeyMap = (letterMap), (numberMap), (controlKeyMap), (functionKeyMap)
         "[press] <char>":     Text("%(char)s"),  # @IgnorePep8 # enabling char/specialCharMap
+        "[press] <modifier1> <pressKey>": Key("%(modifier1)s-%(pressKey)s"),  # @IgnorePep8 # This did not seem to be  necessary when I tested earlier for combinations like super+right or super+left or super+d or super+1 or super+5 etc to work
+        "[press] <modifier1> <modifier2> <pressKey>": Key("%(modifier1)s%(modifier2)s-%(pressKey)s"),  # @IgnorePep8 # this did not seem to be necessary when I tested earlier for combinations like control+alt+t to open a new terminal in X11 on Ubuntu Linux
     })
 
 
