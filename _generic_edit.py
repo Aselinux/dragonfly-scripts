@@ -449,10 +449,10 @@ grammarCfg.cmd = Section("Language section")
 grammarCfg.cmd.map = Item(
     {
         # Navigation keys.
-        "(up|gup) [<n>]": Key("up:%(n)d"),
-        "(up|gup) [<n>] slow": Key("up/15:%(n)d"),
-        "(down|gun) [<n>]": Key("down:%(n)d"),
-        "(down|gun) [<n>] slow": Key("down/15:%(n)d"),
+        "(up|gup|gope) [<n>]": Key("up:%(n)d"),
+        "(up|gup|gope) [<n>] slow": Key("up/15:%(n)d"),
+        "(down|gun|gown) [<n>]": Key("down:%(n)d"),
+        "(down|gun|gown) [<n>] slow": Key("down/15:%(n)d"),
         "(left|leaf) [<n>]": Key("left:%(n)d"),
         "(left|leaf) [<n>] slow": Key("left/15:%(n)d"),
         "(right|Ross) [<n>]": Key("right:%(n)d"),
@@ -551,6 +551,28 @@ grammarCfg.cmd.map = Item(
         "Text": Text,
     }
 )
+
+# general windows and browser navigation commands
+grammarCfg.cmd.map.update({
+    # tab control in browsers and gnome-shell
+    "(preet|pret) [<n>]": Key("c-pgup/5:%(n)d"),
+    "(neat|net) [<n>]": Key("c-pgdown/5:%(n)d"),
+    "clote": Key("c-w"),
+    
+    # for browsers and for Windows Explorer / file manager
+    "backward":    Key("a-left"),
+    "forward":    Key("a-right"),
+    "upward":    Key("a-up"),
+    
+    # Windows control
+    "win toggle": Key("win:down, tab/25:3, win:up"),
+    "win stack": Key("ctrl:down, win:down, tab:down") + Key("control:up, win:up, tab:up"),
+    "win flip": Key("alt:down, tab:down/5, alt:up"),    # the 5 is outerpause and is about the minimum for this to work
+    "win slide": Key("ctrl:down, alt:down, tab:down") + Key("control:up, alt:up, tab:up"),
+
+    "volume up [<n>]": Key("volumeup:%(n)d"),
+    "volume down [<n>]": Key("volumedown:%(n)d"),
+    })
 
 
 if config.get("aenea.enabled") == True:
