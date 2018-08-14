@@ -25,6 +25,7 @@ from dragonfly import (
     Repetition,
     CompoundRule,
     AppContext,
+    Mouse,
 )
 
 from lib.dynamic_aenea import (
@@ -552,7 +553,7 @@ grammarCfg.cmd.map = Item(
     }
 )
 
-# general windows and browser navigation commands
+# general windows and browser navigation command
 grammarCfg.cmd.map.update({
     # tab control in browsers and gnome-shell
     "(preet|pret) [<n>]": Key("c-pgup/5:%(n)d"),
@@ -572,6 +573,16 @@ grammarCfg.cmd.map.update({
 
     "volume up [<n>]": Key("volumeup:%(n)d"),
     "volume down [<n>]": Key("volumedown:%(n)d"),
+
+    # mouse clicks
+    # somtimes some clicks may not work well into Oracle irtual box, but the middle click seems to kind of always work
+    "do click": Mouse("left"),
+    "do right click": Mouse("right"),
+    "do middle click": Mouse("middle"),
+    "do double click": Mouse("left:2"),
+    "do triple click": Mouse("left:3"),
+    "do start drag": Mouse("left:down"),
+    "do stop drag": Mouse("left:up"),
     })
 
 
