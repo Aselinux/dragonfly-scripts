@@ -298,7 +298,7 @@ formatMap = {
     "uppercase dotify": [ft.dotify, ft.upperCase],
     "dotify lowercase": [ft.dotify, ft.lowerCase],
     "dotify uppercase": [ft.dotify, ft.upperCase],
-    "say": ft.spokenForm,
+    "say|dictate": ft.spokenForm,
     "environment variable": [ft.snakeCase, ft.upperCase],
 }
 
@@ -421,7 +421,8 @@ reservedWord = {
     "minus": "minus",
     "semi-colon": "semi-colon",
     "hyphen": "hyphen",
-    "triple": "triple"
+    "triple": "triple",
+    "snore": "snore",
 }
 
 
@@ -543,7 +544,7 @@ grammarCfg.cmd.map = Item(
         "(delete|remove) (double|extra) (space|whitespace)": Key("c-left/3, backspace, c-right/3"),  # @IgnorePep8
         "(delete|remove) (double|extra) (type|char|character)": Key("c-left/3, del, c-right/3"),  # @IgnorePep8
         # Microphone sleep/cancel started dictation.
-        "[<text>] (go to sleep|cancel and sleep) [<text2>]": Function(cancel_and_sleep),  # @IgnorePep8
+        "[<text>] (snore|go to sleep|cancel and sleep) [<text2>]": Function(cancel_and_sleep),  # @IgnorePep8
         # Reload Natlink.
         "reload Natlink": Function(reload_natlink),
     },
