@@ -44,8 +44,8 @@ rules = MappingRule(
         "(change (directory|dir)|C D)": Text("cd "),
         "(change (directory|dir)|C D) <text>": SCText("cd %(text)s"),
         "[press] control break": Key("ctrl:down, c/10, ctrl:up"),
-        "(copy|C P)": Text("cp "),
-        "(copy|C P) recursive": Text("cp -r "),
+#        "(copy|C P)": Text("cp "),
+#        "(copy|C P) recursive": Text("cp -r "),
         "copy terminal": Key("cs-c/3"),
         "(change mode)|C H mod": Text("chmod "),
         "(cron|cron tab|crontab) edit": Text("crontab -e") + Key("enter"),
@@ -102,6 +102,7 @@ rules = MappingRule(
         "soft link": Text("ln -s "),
         "soft link <text>": SCText("ln -s %(text)s"),
         "sudo": Text("sudo "),
+		"sudo i": Text("sudo -i "),
         "(switch user|S U)": Text("su "),
         "(switch user|S U) login": Text("su - "),
         "tail": Text("tail "),
@@ -126,6 +127,20 @@ rules = MappingRule(
         "X M L lint schema <text>": SCText("xmllint -schema %(text)s"),
         "X prop": Text("xprop "),
         "X win info": Text("xwininfo "),
+	
+	# my commonly used commands
+		"netstat": Text("netstat -v4 -antulp | grep -iE ''") + Key("left:%(n)d"),
+		"E grep": Text("egrep -i ''") + Key("left:%(n)d"),
+		"pipe grep": Text(" | grep -iE ''") + Key("left:%(n)d"),
+		"pipe less": Text(" | less") + Key("enter:%(n)d"),
+		"pipe head": Text(" | head") + Key("enter:%(n)d"),
+		"pipe sort unique": Text(" | sort | uniq -c | sort -n"),
+		
+		"T C P dump headers": Text("sudo tcpdump -nn -i any -A -s 0 'tcp port 80 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)' | egrep --line-buffered '^........(GET |HTTP\/|POST |HEAD )|^[A-Za-z0-9-]+: ' | sed -r 's/^.{8}(GET |HTTP\/|POST |HEAD )/\\n\\1/g'"),
+		"pipe zargz": Text(" | xargs -I") + Key("percent") + Text(" "),
+		"less var log": Text("less /var/log/") + Key("tab:2"),
+		"cat var log": Text("cat /var/log/") + Key("tab:2"),
+		"break": Key("c-c")
     },
     extras=[
         IntegerRef("n", 1, 100),
