@@ -115,12 +115,13 @@ def import_dynamic_modules():
     prefix = dynamics.__name__ + "."
     print("Loading dynamic grammar modules:")
     for importer, package_name, _ in pkgutil.iter_modules(path, prefix):
+        print "---------- loading (not enabling): " + str(package_name)
         if package_name not in sys.modules:
             module = importer.find_module(package_name).load_module(
                 package_name)
             moduleMapping[module.DYN_MODULE_NAME] = module
             enabled = config.get("dynamics.%s" % module.DYN_MODULE_NAME, False)
-            print("    %s" % package_name)
+            print("    %s" % package_name + " : enabled: %s" % enabled)
             if enabled == True:
                 enable_module(module, useSound=False)
 
@@ -248,6 +249,7 @@ def unload():
     # Unload the dynamically loaded modules.
     global moduleMapping
     for module in moduleMapping.values():
+        print "---------- " + __file__.split('\\')[-1] + " unload(): " + str(module.__name__)
         module.unload()
 
     global grammar
