@@ -12,8 +12,8 @@ from lib.dynamic_aenea import (
     Text,
 )
 
-from lib.text import SCText
 import lib.format
+from lib.text import SCText
 
 DYN_MODULE_NAME = "bash"
 INCOMPATIBLE_MODULES = []
