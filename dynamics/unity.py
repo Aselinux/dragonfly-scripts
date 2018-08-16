@@ -181,9 +181,10 @@ if config.get("aenea.enabled", False) == True:
         else:
             return False
 
-    # Unload function which will be called at unload time.
-    def unload():
+# Unload function which will be called at unload time.
+def unload():
+    if config.get("aenea.enabled", False) == True:
         global grammar
         if grammar:
             grammar.unload()
-        grammar = None
+    grammar = None
