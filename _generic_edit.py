@@ -123,7 +123,8 @@ specialCharMap = {
     "([forward]slash|lash|Flash)": "/", # slash and "forward slash" is not working as a command, so removed space and added alternatives
     "(underscore)": "_",
     "(star|asterisk)": "*",
-    "(colon|colly|coal)": ":",
+    #"(colon|colly|coal)": ":",
+    "(colon|colly)": ":",
     "(semicolon|semi)": ";",
     "at (sign|symbol)|atte": "@", # "at sign"  doesn't work, "at" on its own not a good idea
     "[double] quote": '"',
@@ -149,13 +150,13 @@ specialCharMap = {
     "(back tick)": "`", # remove tick confused with teek and bing not used
     "(caret|carrot)": "^",
     "tilde": "~",
-    "(exclamation [mark]|bang|clammy)": "!",
+    "(exclamation [mark]|bang|clam|clammy)": "!",
 }
 
 # Modifiers for the press-command.
 modifierMap = {
-    "alt|alternative|meta": "a",
-    "control|troll": "c",
+    "alt|alternative|meta|diamond|command": "a",
+    "control": "c",
     "shift|sky": "s",
     "super": "w",
 }
@@ -212,7 +213,7 @@ letterMap = {
         "(Mike|Mick)": "m",
         "(November|nov|nova)": "n",
         "(Oscar|oss|osk|osh)": "o",
-        "(papa|pup)": "p",
+        "(papa|pup|puppy)": "p",
         "(Quebec|queen)": "q",
         "(Romeo|Rome|rom)": "r",
         "(Sierra|seer|souk)": "s",
@@ -459,7 +460,7 @@ grammarCfg.cmd.map = Item(
         "(left|leaf) [<n>] slow": Key("left/15:%(n)d"),
         "(right|Ross) [<n>]": Key("right:%(n)d"),
         "(right|Ross) [<n>] slow": Key("right/15:%(n)d"),
-        "(page up|pope) [<n>]": Key("pgup:%(n)d"),
+        "(page up|pope|powp) [<n>]": Key("pgup:%(n)d"),
         "(page down|pown) [<n>]": Key("pgdown:%(n)d"),
         "up <n> (page|pages)": Key("pgup:%(n)d"),
         "down <n> (page|pages)": Key("pgdown:%(n)d"),
@@ -546,6 +547,20 @@ grammarCfg.cmd.map = Item(
         # Microphone sleep/cancel started dictation.
         "[<text>] (snore|go to sleep|cancel and sleep) [<text2>]": Function(cancel_and_sleep),  # @IgnorePep8
         # Reload Natlink.
+        # errors and fails on win7_64bit i think because pywin is 32bit
+        # Reloading Python subsystem...
+        # some error occurred
+        # Traceback (most recent call last):
+        # File "C:\NatLink\NatLink\MacroSystem\core\natlinkmain.py", line 146, in <module>
+        # import natlinkstatus    # for extracting status info (QH)
+        # File "C:\NatLink\NatLink\MacroSystem\core\natlinkstatus.py", line 180, in <module>
+        # import RegistryDict, natlinkcorefunctions
+        # File "C:\NatLink\NatLink\MacroSystem\core\natlinkcorefunctions.py", line 31, in <module>
+        # from win32com.shell import shell, shellcon
+        # File "C:\Python27\lib\site-packages\win32com\__init__.py", line 82, in <module>
+        # SetupEnvironment()
+        # File "<string>", line 3, in __init__
+        # TypeError: 'NoneType' object is not callable
         "reload Natlink": Function(reload_natlink),
     },
     namespace={
