@@ -153,6 +153,11 @@ specialCharMap = {
     "(exclamation [mark]|bang|clam|clammy)": "!",
 }
 
+# need the name for a character when using the Key()function, something like modifierMap vs singleModifierMap
+specialCharNameMap = {
+    "(dot|period|point|dit|doot)": "dot",
+}
+
 # Modifiers for the press-command.
 modifierMap = {
     "alt|alternative|meta|diamond|command": "a",
@@ -615,6 +620,8 @@ else: # this "else" section is basically the full VOICE KEYBOARD, when running o
         "[press] <char>":     Text("%(char)s"),  # @IgnorePep8 # enabling char/specialCharMap
         "[press] <modifier1> <pressKey>": Key("%(modifier1)s-%(pressKey)s"),  # @IgnorePep8 # This did not seem to be  necessary when I tested earlier for combinations like super+right or super+left or super+d or super+1 or super+5 etc to work
         "[press] <modifier1> <modifier2> <pressKey>": Key("%(modifier1)s%(modifier2)s-%(pressKey)s"),  # @IgnorePep8 # this did not seem to be necessary when I tested earlier for combinations like control+alt+t to open a new terminal in X11 on Ubuntu Linux
+        "[press] <modifier1> <charName>": Key("%(modifier1)s-%(charName)s"),  # @IgnorePep8 # I discovered this missing when I was using meta+dot (=escape followed/with dot) to repeat the last commandline argument from the previous command in bash
+        "last argument": Key("a-dot"),
     })
 
 
@@ -626,6 +633,7 @@ class KeystrokeRule(MappingRule):
         Dictation("text"),
         Dictation("text2"),
         Choice("char", specialCharMap),
+        Choice("charName", specialCharNameMap),
         Choice("modifier1", modifierMap),
         Choice("modifier2", modifierMap),
         Choice("modifierSingle", singleModifierMap),
